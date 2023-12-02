@@ -18,9 +18,10 @@ let part1 =
 
 let part2 =
     data
-    |> Array.map(Array.concat >> Array.sortByDescending(fst))
-    |> Array.map(fun a -> (Array.find (snd >> (=) "red") a, Array.find (snd >> (=)  "green") a, Array.find(snd >> (=)  "blue") a))
-    |> Array.map(fun (red, green, blue) -> (red |> fst) * (green |> fst) * (blue |> fst))
+    |> Array.map(
+        Array.concat
+        >> Array.sortByDescending(fst)
+        >> fun a -> (Array.find (snd >> (=) "red") a, Array.find (snd >> (=)  "green") a, Array.find(snd >> (=)  "blue") a) |> fun (red, green, blue) -> (red |> fst) * (green |> fst) * (blue |> fst))
 
 printfn "Part1: %A" part1
 printfn "Part2: %A" (part2 |> Array.sum)
