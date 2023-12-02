@@ -13,7 +13,7 @@ let data =
 let part1 =
     data
         |> Array.map (Array.map(Array.fold validateSet max >> Map.toArray)) |> Array.indexed
-        |> Array.filter(snd >> Array.forall(fun f -> f |> Array.forall (fun (_, v2) -> v2 >= 0)))
+        |> Array.filter(snd >> Array.forall(Array.forall (fun (_, v2) -> v2 >= 0)))
         |> Array.sumBy(fst >> (+) 1)
 
 let part2 =
