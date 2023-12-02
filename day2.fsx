@@ -20,7 +20,9 @@ let part2 =
     |> Array.map(
         Array.concat
         >> Array.sortByDescending(fst)
-        >> fun a -> (Array.find (snd >> (=) "red") a, Array.find (snd >> (=)  "green") a, Array.find(snd >> (=)  "blue") a) |> fun (red, green, blue) -> (red |> fst) * (green |> fst) * (blue |> fst))
+        >> fun a -> [|"red"; "green"; "blue"|] |> Array.map (fun (c) -> Array.find (snd >> (=) c) a |> fst) |> Array.reduce ((*)))
+    |> Array.sum
+
 
 printfn "Part1: %A" part1
-printfn "Part2: %A" (part2 |> Array.sum)
+printfn "Part2: %A" (part2 )
