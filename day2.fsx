@@ -7,8 +7,7 @@ let validateSet (acc:  Map<string,int>) (number: int, color: string) =
 
 let data =
     System.IO.File.ReadAllLines "inputs/day2"
-        |> Array.map (fun l -> l.Split(": ").[1].Split(([| "; " |]), StringSplitOptions.RemoveEmptyEntries))
-        |> Array.map (Array.map(split ", " >> Array.map(split " ") >> Array.map(fun ([|a; b|]) -> (int a, b))))
+        |> Array.map (split ": " >> Array.last >> split "; " >> Array.map(split ", " >> Array.map(split " ") >> Array.map(fun ([|a; b|]) -> (int a, b))))
 
 let part1 =
     data
